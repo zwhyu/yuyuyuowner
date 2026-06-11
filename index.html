@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>黄连素（盐酸小檗碱）市场调研分析报告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #F5F5F0; --fg: #1A1A1A;
+    --coral: #E85D4E; --lime: #C4D94E; --lavender: #C5B5E0;
+    --sky: #8BB4F7; --violet: #A06CE8; --yellow: #F2D160;
+    --peach: #F5B895; --mint: #A8E6CF; --outline: #1E1E1E;
+    --shadow: rgba(26, 26, 26, 0.08);
+    --font-display: 'Bodoni Moda', serif;
+    --font-body: 'Space Grotesk', sans-serif;
+  }
+  html { font-size: 18px; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: var(--bg); font-family: var(--font-body); color: var(--fg); }
+
+  .grain-overlay {
+    position: fixed; inset: 0; pointer-events: none; z-index: 9999;
+    opacity: 0.04; mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat; background-size: 200px 200px;
+  }
+  .presentation { width: 100%; height: 100%; position: relative; }
+  .slide {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    display: flex; flex-direction: column; padding: 2.4rem 3rem;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1); overflow: hidden;
+  }
+  .slide.active { opacity: 1; pointer-events: all; }
+
+  /* === Shared === */
+  .pill { display: inline-flex; align-items: center; justify-content: center; border-radius: 9999px; border: 2px solid var(--outline); font-family: var(--font-body); font-weight: 500; letter-spacing: 0.02em; white-space: nowrap; }
+  .pill-filled { border-width: 2px; }
+  .pill-coral { background: var(--coral); } .pill-lime { background: var(--lime); } .pill-lavender { background: var(--lavender); } .pill-sky { background: var(--sky); } .pill-violet { background: var(--violet); } .pill-yellow { background: var(--yellow); } .pill-peach { background: var(--peach); } .pill-mint { background: var(--mint); } .pill-white { background: #fff; } .pill-outline { background: transparent; }
+  .section-tag { display: inline-block; border-radius: 9999px; border: 2px solid var(--outline); padding: 0.3rem 0.9rem; font-size: 0.6rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.6rem; }
+  .slide-header { margin-bottom: 1.2rem; }
+  .slide-header h2 { font-family: var(--font-display); font-size: clamp(1.5rem, 2.8vw, 2.6rem); font-weight: 700; letter-spacing: -0.01em; line-height: 1.1; }
+  .slide-header p { font-size: 0.78rem; opacity: 0.55; margin-top: 0.4rem; line-height: 1.5; }
+
+  /* Nav */
+  .nav-dots { position: fixed; right: 1.2rem; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 0.4rem; z-index: 100; }
+  .nav-dot { width: 8px; height: 8px; border-radius: 50%; border: 2px solid var(--outline); background: transparent; cursor: pointer; transition: all 0.3s ease; }
+  .nav-dot.active { background: var(--outline); transform: scale(1.3); }
+  .slide-counter { position: fixed; bottom: 1.2rem; right: 1.2rem; font-family: var(--font-body); font-size: 0.6rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg); opacity: 0.45; z-index: 100; }
+  .nav-hint { position: fixed; bottom: 1.2rem; left: 1.2rem; font-family: var(--font-body); font-size: 0.52rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg); opacity: 0.25; z-index: 100; }
+
+  /* S1 Title */
+  .slide-1 { justify-content: center; align-items: center; background: radial-gradient(ellipse at 20% 80%, rgba(200,217,78,0.15) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(139,180,247,0.12) 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, rgba(245,184,149,0.08) 0%, transparent 60%), var(--bg); }
+  .slide-1 .deco-pills { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+  .slide-1 .deco-pill { position: absolute; border-radius: 9999px; border: 2px solid var(--outline); display: flex; align-items: center; justify-content: center; font-family: var(--font-body); font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
+  .slide-1 .main-title { font-family: var(--font-display); font-size: clamp(2.6rem, 6.5vw, 6rem); font-weight: 800; line-height: 0.9; text-align: center; letter-spacing: -0.02em; color: var(--fg); position: relative; z-index: 2; }
+  .slide-1 .main-title .subtitle { display: block; font-family: var(--font-body); font-size: clamp(0.7rem, 1.2vw, 0.92rem); font-weight: 400; letter-spacing: 0.15em; text-transform: uppercase; margin-top: 1.3rem; color: var(--fg); opacity: 0.6; }
+  .slide-1 .title-pill { position: relative; z-index: 2; background: var(--yellow); padding: 1rem 2.8rem; border-radius: 9999px; border: 2px solid var(--outline); margin-bottom: 1.8rem; font-family: var(--font-body); font-weight: 600; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; }
+
+  /* S2 Agenda */
+  .slide-2 { justify-content: center; background: radial-gradient(ellipse at 80% 20%, rgba(160,108,232,0.06) 0%, transparent 40%), var(--bg); }
+  .slide-2 .agenda-grid { max-width: 850px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 1.2rem; }
+  .slide-2 .agenda-item { display: flex; align-items: center; gap: 1.3rem; background: #fff; border: 2px solid var(--outline); border-radius: 1.3rem; padding: 1.3rem 1.8rem; box-shadow: 6px 6px 0 var(--shadow); }
+  .slide-2 .agenda-num { font-family: var(--font-display); font-size: 1.8rem; font-weight: 800; min-width: 2.8rem; text-align: center; line-height: 1; }
+  .slide-2 .agenda-text h3 { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; line-height: 1.2; }
+  .slide-2 .agenda-text p { font-size: 0.72rem; opacity: 0.55; margin-top: 0.2rem; line-height: 1.4; }
+
+  /* S3 Stats */
+  .slide-3 { justify-content: center; background: radial-gradient(ellipse at 80% 80%, rgba(200,217,78,0.1) 0%, transparent 40%), radial-gradient(ellipse at 20% 20%, rgba(245,184,149,0.1) 0%, transparent 40%), var(--bg); }
+  .slide-3 .slide-inner { max-width: 1050px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 1.6rem; }
+  .slide-3 .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+  .stat-pill { background: #fff; border: 2px solid var(--outline); border-radius: 1.8rem; padding: 1.5rem 1.2rem; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.5rem; box-shadow: 6px 6px 0 var(--shadow); }
+  .stat-pill .stat-number { font-family: var(--font-display); font-size: clamp(1.6rem, 2.8vw, 2.5rem); font-weight: 800; line-height: 1; letter-spacing: -0.03em; }
+  .stat-pill .stat-label { font-size: 0.6rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.6; line-height: 1.3; }
+  .stat-pill .stat-bar { width: 36px; height: 3px; border-radius: 9999px; margin-top: 0.1rem; }
+  .trend-note { text-align: center; font-size: 0.78rem; opacity: 0.6; line-height: 1.55; max-width: 680px; margin: 0 auto; }
+
+  /* S4 China */
+  .slide-4 { justify-content: center; background: radial-gradient(ellipse at 0% 50%, rgba(160,108,232,0.08) 0%, transparent 50%), var(--bg); }
+  .slide-4 .slide-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start; max-width: 1050px; width: 100%; margin: 0 auto; }
+  .slide-4 .left-col { display: flex; flex-direction: column; gap: 1.2rem; }
+  .slide-4 .left-col .accent-line { width: 55px; height: 3px; background: var(--coral); border-radius: 9999px; }
+  .slide-4 .left-col h2 { font-family: var(--font-display); font-size: clamp(1.6rem, 3.2vw, 2.7rem); font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; }
+  .slide-4 .left-col p { font-size: 0.82rem; line-height: 1.6; opacity: 0.6; }
+  .data-card { background: #fff; border: 2px solid var(--outline); border-radius: 1.3rem; padding: 1.3rem; box-shadow: 6px 6px 0 var(--shadow); }
+  .data-card h4 { font-family: var(--font-display); font-size: 0.92rem; font-weight: 700; margin-bottom: 0.6rem; }
+  .age-table { width: 100%; border-collapse: collapse; font-size: 0.72rem; }
+  .age-table th { text-align: left; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.58rem; padding: 0.4rem 0.4rem; border-bottom: 2px solid var(--outline); opacity: 0.5; }
+  .age-table td { padding: 0.5rem 0.4rem; border-bottom: 1px solid rgba(30,30,30,0.08); vertical-align: top; }
+  .age-table tr:last-child td { border-bottom: none; }
+  .age-table .pct { font-family: var(--font-display); font-weight: 700; font-size: 0.88rem; }
+
+  /* S5 Bar Chart */
+  .slide-5 { justify-content: center; background: radial-gradient(ellipse at 50% 100%, rgba(200,217,78,0.1) 0%, transparent 50%), var(--bg); }
+  .slide-5 .slide-inner { max-width: 880px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 1.6rem; }
+  .chart-container { display: flex; flex-direction: column; gap: 1rem; background: #fff; border: 2px solid var(--outline); border-radius: 1.8rem; padding: 2.2rem; box-shadow: 8px 8px 0 var(--shadow); }
+  .chart-row { display: flex; align-items: center; gap: 1rem; }
+  .chart-label { width: 200px; font-family: var(--font-body); font-size: 0.72rem; font-weight: 500; text-align: right; flex-shrink: 0; line-height: 1.3; }
+  .chart-bar-track { flex: 1; height: 28px; background: var(--bg); border-radius: 9999px; border: 2px solid var(--outline); overflow: hidden; }
+  .chart-bar-fill { height: 100%; border-radius: 9999px; display: flex; align-items: center; justify-content: flex-end; padding-right: 0.7rem; font-size: 0.62rem; font-weight: 600; transition: width 1s cubic-bezier(0.4,0,0.2,1); border-right: 2px solid var(--outline); }
+  .chart-value { width: 50px; font-size: 0.78rem; font-weight: 600; flex-shrink: 0; }
+
+  /* S6/7/8 Brand Cards */
+  .slide-brands { justify-content: center; background: var(--bg); }
+  .slide-brands .slide-inner { max-width: 1160px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 0.8rem; }
+  .brand-row {
+    display: grid; grid-template-columns: 70px 2fr 1.1fr 0.6fr 1.8fr 2.4fr;
+    gap: 0; align-items: stretch;
+    background: #fff; border: 2px solid var(--outline); border-radius: 1rem;
+    overflow: hidden; box-shadow: 4px 4px 0 var(--shadow);
+  }
+  .brand-row.header { background: transparent; border: none; box-shadow: none; font-size: 0.52rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.4; border-radius: 0; }
+  .brand-row.header > div { padding: 0.25rem 0.6rem; }
+  .brand-cell {
+    padding: 0.55rem 0.6rem; font-size: 0.65rem; line-height: 1.35;
+    border-right: 1px solid rgba(30,30,30,0.08);
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .brand-cell:last-child { border-right: none; }
+  .brand-img-cell {
+    padding: 0.4rem; border-right: 1px solid rgba(30,30,30,0.08);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .brand-img-cell img { max-width: 56px; max-height: 56px; object-fit: contain; border-radius: 6px; }
+  .brand-cell .brand-name { font-weight: 700; font-size: 0.74rem; line-height: 1.2; margin-bottom: 0.05rem; }
+  .brand-cell .brand-sub { opacity: 0.45; font-size: 0.52rem; }
+  .brand-cell .price-tag { font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; }
+  .brand-cell .efficacy-pills { display: flex; flex-wrap: wrap; gap: 0.15rem; }
+  .brand-cell .mini-pill { padding: 0.1rem 0.38rem; border-radius: 9999px; border: 1.5px solid var(--outline); font-size: 0.42rem; font-weight: 600; letter-spacing: 0.02em; white-space: nowrap; }
+  .brand-cell .ingredient-text { font-size: 0.52rem; opacity: 0.5; line-height: 1.35; }
+
+  /* S9 Efficacy Chart */
+  .slide-9 { justify-content: center; background: radial-gradient(ellipse at 50% 100%, rgba(200,217,78,0.1) 0%, transparent 50%), var(--bg); }
+  .slide-9 .slide-inner { max-width: 920px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 1.6rem; }
+
+  /* S10 Cards */
+  .slide-10 { justify-content: center; background: radial-gradient(ellipse at 100% 0%, rgba(232,93,78,0.06) 0%, transparent 40%), radial-gradient(ellipse at 0% 100%, rgba(139,180,247,0.08) 0%, transparent 40%), var(--bg); }
+  .slide-10 .slide-inner { max-width: 1050px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 1.6rem; }
+  .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+  .pillar-card { background: #fff; border: 2px solid var(--outline); border-radius: 1.3rem; padding: 1.6rem 1.3rem; display: flex; flex-direction: column; gap: 0.7rem; box-shadow: 8px 8px 0 var(--shadow); }
+  .pillar-card .card-icon { width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--outline); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; flex-shrink: 0; }
+  .pillar-card h3 { font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; line-height: 1.15; }
+  .pillar-card .card-tag { font-size: 0.52rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; opacity: 0.5; }
+  .pillar-card p { font-size: 0.7rem; line-height: 1.5; opacity: 0.6; }
+
+  /* S11 Dosage */
+  .slide-11 { justify-content: center; background: radial-gradient(ellipse at 100% 50%, rgba(245,209,96,0.1) 0%, transparent 50%), var(--bg); }
+  .slide-11 .slide-inner { max-width: 1050px; width: 100%; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start; }
+  .slide-11 .left-col { display: flex; flex-direction: column; gap: 1.2rem; }
+  .slide-11 .left-col h3 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; }
+  .dosage-bars { display: flex; flex-direction: column; gap: 0.7rem; }
+  .dosage-row { display: flex; align-items: center; gap: 0.7rem; }
+  .dosage-label { width: 90px; font-size: 0.68rem; font-weight: 500; text-align: right; flex-shrink: 0; }
+  .dosage-track { flex: 1; height: 24px; background: var(--bg); border-radius: 9999px; border: 2px solid var(--outline); overflow: hidden; }
+  .dosage-fill { height: 100%; border-radius: 9999px; display: flex; align-items: center; padding-left: 0.7rem; font-size: 0.52rem; font-weight: 600; border-right: 2px solid var(--outline); }
+  .dosage-val { width: 36px; font-size: 0.72rem; font-weight: 600; flex-shrink: 0; }
+  .slide-11 .right-col { background: #fff; border: 2px solid var(--outline); border-radius: 1.3rem; padding: 1.5rem; box-shadow: 6px 6px 0 var(--shadow); display: flex; flex-direction: column; gap: 0.8rem; }
+  .slide-11 .right-col h3 { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; }
+  .driver-item { padding: 0.5rem 0; border-bottom: 1px solid rgba(30,30,30,0.08); }
+  .driver-item:last-child { border-bottom: none; }
+  .driver-item h4 { font-size: 0.74rem; font-weight: 600; margin-bottom: 0.15rem; }
+  .driver-item p { font-size: 0.64rem; opacity: 0.5; line-height: 1.45; }
+
+  /* S12 Formulation */
+  .slide-12 { justify-content: center; background: radial-gradient(ellipse at 50% 50%, rgba(139,180,247,0.08) 0%, transparent 50%), var(--bg); }
+  .slide-12 .slide-inner { max-width: 1050px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 1.5rem; }
+  .formulation-flow { display: flex; align-items: center; justify-content: center; gap: 0; flex-wrap: nowrap; }
+  .formula-node { border-radius: 9999px; border: 2px solid var(--outline); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-weight: 600; font-size: 0.7rem; line-height: 1.2; padding: 0.6rem 1rem; box-shadow: 6px 6px 0 var(--shadow); z-index: 2; background: #fff; min-width: 95px; min-height: 42px; }
+  .formula-node .pct { font-size: 0.48rem; opacity: 0.4; font-weight: 400; }
+  .formula-connector { width: 24px; height: 3px; background: var(--outline); position: relative; flex-shrink: 0; }
+  .formula-connector::after { content: ''; position: absolute; right: -4px; top: 50%; transform: translateY(-50%); width: 0; height: 0; border-top: 4px solid transparent; border-bottom: 4px solid transparent; border-left: 7px solid var(--outline); }
+  .oregon-box { background: #fff; border: 2px solid var(--outline); border-radius: 1.3rem; padding: 1.5rem; box-shadow: 6px 6px 0 var(--shadow); display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.2rem; }
+  .og-item h4 { font-size: 0.7rem; font-weight: 600; margin-bottom: 0.15rem; }
+  .og-item p { font-size: 0.6rem; opacity: 0.5; line-height: 1.45; }
+
+  /* S13 Feedback */
+  .slide-13 { justify-content: center; background: radial-gradient(ellipse at 80% 80%, rgba(200,217,78,0.1) 0%, transparent 40%), radial-gradient(ellipse at 20% 20%, rgba(245,184,149,0.1) 0%, transparent 40%), var(--bg); }
+  .slide-13 .slide-inner { max-width: 1050px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 1.6rem; }
+  .slide-13 .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+
+  /* S14 Timeline */
+  .slide-14 { justify-content: center; background: radial-gradient(ellipse at 50% 0%, rgba(232,93,78,0.06) 0%, transparent 40%), var(--bg); }
+  .slide-14 .slide-inner { max-width: 1050px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 1.6rem; }
+  .timeline { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.8rem; position: relative; padding-top: 0.8rem; }
+  .timeline-track { position: absolute; top: 1.7rem; left: 5%; right: 5%; height: 3px; background: var(--bg); border-radius: 9999px; border: 2px solid var(--outline); z-index: 0; }
+  .timeline-step { display: flex; flex-direction: column; align-items: center; gap: 0.6rem; position: relative; z-index: 1; flex: 1; max-width: 220px; }
+  .timeline-step .step-node { width: 42px; height: 42px; border-radius: 50%; border: 2px solid var(--outline); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 0.95rem; font-weight: 700; background: #fff; flex-shrink: 0; box-shadow: 4px 4px 0 var(--shadow); }
+  .timeline-step .step-label { text-align: center; font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; line-height: 1.25; }
+  .timeline-step .step-desc { text-align: center; font-size: 0.62rem; line-height: 1.35; opacity: 0.5; margin-top: -0.2rem; }
+
+  /* S15 Quote */
+  .slide-15 { justify-content: center; align-items: center; background: radial-gradient(ellipse at 30% 70%, rgba(245,209,96,0.15) 0%, transparent 45%), radial-gradient(ellipse at 70% 30%, rgba(160,108,232,0.1) 0%, transparent 45%), var(--bg); }
+  .statement-box { max-width: 820px; text-align: center; position: relative; padding: 2.2rem; }
+  .statement-box .quote-mark { font-family: var(--font-display); font-size: 6rem; line-height: 0; color: var(--coral); opacity: 0.25; position: absolute; top: 1.2rem; left: 0; }
+  .statement-box blockquote { font-family: var(--font-display); font-size: clamp(1.2rem, 2.5vw, 2rem); font-weight: 600; line-height: 1.4; letter-spacing: -0.01em; position: relative; z-index: 1; }
+  .statement-box .qh { display: inline-block; background: var(--lime); padding: 0.08rem 0.5rem; border-radius: 9999px; border: 2px solid var(--outline); font-style: normal; font-weight: 700; }
+  .statement-box .qh.alt { background: var(--sky); }
+  .statement-box .qh.third { background: var(--yellow); }
+  .statement-box .attribution { margin-top: 1.2rem; font-family: var(--font-body); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.45; }
+
+  /* S16 Closing */
+  .slide-16 { justify-content: center; align-items: center; background: radial-gradient(ellipse at 20% 20%, rgba(200,217,78,0.12) 0%, transparent 40%), radial-gradient(ellipse at 80% 80%, rgba(245,184,149,0.12) 0%, transparent 40%), radial-gradient(ellipse at 50% 50%, rgba(160,108,232,0.06) 0%, transparent 50%), var(--bg); }
+  .slide-16 .closing-content { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 1.2rem; position: relative; z-index: 2; }
+  .closing-pill { background: var(--yellow); padding: 0.9rem 2.2rem; border-radius: 9999px; border: 2px solid var(--outline); font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; }
+  .slide-16 h2 { font-family: var(--font-display); font-size: clamp(2rem, 4.5vw, 3.8rem); font-weight: 800; line-height: 0.95; letter-spacing: -0.03em; max-width: 600px; }
+  .closing-line { width: 70px; height: 3px; background: var(--coral); border-radius: 9999px; }
+  .closing-sub { font-family: var(--font-body); font-size: 0.7rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.45; }
+  .deco-pills-closing { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+  .deco-pills-closing .c-pill { position: absolute; border-radius: 9999px; border: 2px solid var(--outline); display: flex; align-items: center; justify-content: center; font-size: 0.55rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+
+  /* =============================================
+     Slides 2-14: Body text ×1.5 (titles excluded)
+     ============================================= */
+
+  /* Shared */
+  .section-tag { font-size: 0.9rem; padding: 0.45rem 1.35rem; }
+  .slide-header p { font-size: 1.17rem; }
+
+  /* S2 Agenda */
+  .slide-2 .agenda-num { font-size: 2.7rem; min-width: 4.2rem; }
+  .slide-2 .agenda-text h3 { font-size: 1.72rem; }
+  .slide-2 .agenda-text p { font-size: 1.08rem; }
+
+  /* S3 Stats */
+  .stat-pill .stat-label { font-size: 0.9rem; }
+  .trend-note { font-size: 1.17rem; }
+
+  /* S4 China */
+  .slide-4 .left-col p { font-size: 1.23rem; }
+  .data-card h4 { font-size: 1.38rem; }
+  .age-table { font-size: 1.08rem; }
+  .age-table th { font-size: 0.87rem; }
+  .age-table .pct { font-size: 1.32rem; }
+
+  /* S5/S9 Charts */
+  .chart-label { font-size: 1.08rem; width: 280px; }
+  .chart-bar-fill { font-size: 0.93rem; }
+  .chart-value { font-size: 1.17rem; width: 70px; }
+  .chart-bar-track { height: 36px; }
+
+  /* S6/S7/S8 Brands */
+  .brand-row { grid-template-columns: 90px 2.2fr 1.3fr 0.8fr 2fr 2.8fr; }
+  .brand-row.header { font-size: 0.78rem; }
+  .brand-row.header > div { padding: 0.35rem 0.9rem; }
+  .brand-cell { font-size: 0.975rem; padding: 0.8rem 0.9rem; }
+  .brand-cell .brand-name { font-size: 1.11rem; }
+  .brand-cell .brand-sub { font-size: 0.78rem; }
+  .brand-cell .price-tag { font-size: 1.28rem; }
+  .brand-cell .mini-pill { font-size: 0.63rem; padding: 0.15rem 0.57rem; }
+  .brand-cell .ingredient-text { font-size: 0.78rem; }
+  .brand-img-cell img { max-width: 80px; max-height: 80px; }
+
+  /* S10 Cards */
+  .pillar-card h3 { font-size: 1.58rem; }
+  .pillar-card .card-tag { font-size: 0.78rem; }
+  .pillar-card p { font-size: 1.05rem; }
+  .pillar-card .card-icon { font-size: 1.65rem; width: 60px; height: 60px; }
+
+  /* S11 Dosage */
+  .slide-11 .left-col h3 { font-size: 1.88rem; }
+  .dosage-label { font-size: 1.02rem; width: 130px; }
+  .dosage-fill { font-size: 0.78rem; }
+  .dosage-track { height: 32px; }
+  .dosage-val { font-size: 1.08rem; width: 50px; }
+  .slide-11 .right-col h3 { font-size: 1.72rem; }
+  .driver-item h4 { font-size: 1.11rem; }
+  .driver-item p { font-size: 0.96rem; }
+
+  /* S12 Formula */
+  .formula-node { font-size: 1.05rem; min-width: 130px; min-height: 56px; padding: 0.9rem 1.5rem; }
+  .formula-node .pct { font-size: 0.72rem; }
+  .og-item h4 { font-size: 1.05rem; }
+  .og-item p { font-size: 0.9rem; }
+
+  /* S13 Stats (reuses .stat-label — already covered) */
+
+  /* S14 Timeline */
+  .timeline-step .step-node { font-size: 1.42rem; width: 56px; height: 56px; }
+  .timeline-step .step-label { font-size: 0.98rem; }
+  .timeline-step .step-desc { font-size: 0.93rem; }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .slide { padding: 1.5rem; }
+    .slide-4 .slide-inner, .slide-11 .slide-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+    .cards-grid { grid-template-columns: 1fr; }
+    .slide-13 .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .timeline { flex-direction: column; align-items: center; gap: 1.5rem; }
+    .timeline-track { display: none; }
+    .chart-row { flex-direction: column; align-items: flex-start; gap: 0.4rem; }
+    .chart-label { text-align: left; }
+    .formulation-flow { flex-wrap: wrap; justify-content: center; gap: 0.4rem; }
+    .formula-connector { display: none; }
+    .oregon-box { grid-template-columns: 1fr; }
+    .brand-row { grid-template-columns: 1fr; }
+    .brand-row.header { display: none; }
+    .brand-cell, .brand-img-cell { border-right: none; border-bottom: 1px solid rgba(30,30,30,0.08); }
+    .brand-cell:last-child { border-bottom: none; }
+    .nav-dots { display: none; }
+  }
+  @media (max-width: 600px) {
+    .slide-3 .stats-grid { grid-template-columns: 1fr; }
+    .slide-13 .stats-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="grain-overlay"></div>
+<div class="presentation">
+
+  <!-- S1 Title -->
+  <div class="slide slide-1 active" data-slide="1">
+    <div class="deco-pills">
+      <div class="deco-pill pill-coral" style="width:110px;height:48px;top:12%;left:8%;transform:rotate(-12deg);font-size:0.75rem;">全球市场</div>
+      <div class="deco-pill pill-lavender" style="width:140px;height:52px;top:18%;right:12%;transform:rotate(8deg);font-size:0.78rem;">品牌全景</div>
+      <div class="deco-pill pill-sky" style="width:100px;height:44px;top:72%;left:15%;transform:rotate(6deg);font-size:0.7rem;">竞争洞察</div>
+      <div class="deco-pill pill-lime" style="width:120px;height:48px;top:78%;right:18%;transform:rotate(-8deg);font-size:0.75rem;">战略机遇</div>
+      <div class="deco-pill pill-peach" style="width:75px;height:75px;border-radius:50%;top:15%;left:45%;font-size:0.65rem;">2026</div>
+      <div class="deco-pill pill-white" style="width:95px;height:42px;top:65%;right:8%;transform:rotate(15deg);font-size:0.65rem;opacity:0.6;">调研</div>
+      <div class="deco-pill pill-violet" style="width:80px;height:80px;border-radius:50%;top:75%;left:5%;font-size:0.6rem;">增长</div>
+    </div>
+    <div class="title-pill">内部战略汇报</div>
+    <h1 class="main-title">黄连素<span class="subtitle">盐酸小檗碱 · 市场调研分析报告</span></h1>
+  </div>
+
+  <!-- S2 目录 -->
+  <div class="slide slide-2" data-slide="2">
+    <div class="agenda-grid">
+      <div class="slide-header"><div class="section-tag pill-lavender">目录</div><h2>报告结构总览</h2></div>
+      <div class="agenda-item"><div class="agenda-num" style="color:var(--coral);">01</div><div class="agenda-text"><h3>全球市场规模与增长</h3><p>全球市场数据 · 中国市场消费者画像与复购率 · 海外市场复购/订购率</p></div></div>
+      <div class="agenda-item"><div class="agenda-num" style="color:var(--lime);">02</div><div class="agenda-text"><h3>海外品牌全景与产品分析</h3><p>三梯队品牌详情 · 功效声称分布与声称策略 · 剂型分布与植物胶囊驱动因素 · 复配配方趋势</p></div></div>
+      <div class="agenda-item"><div class="agenda-num" style="color:var(--sky);">03</div><div class="agenda-text"><h3>消费者洞察与竞争机会</h3><p>消费者反馈画像 · 需求分层 · 三大竞争机会洞察</p></div></div>
+    </div>
+  </div>
+
+  <!-- S3 全球市场 -->
+  <div class="slide slide-3" data-slide="3">
+    <div class="slide-inner">
+      <div class="slide-header" style="text-align:center;"><div class="section-tag pill-lime">01 全球市场规模与增长</div><h2>全球黄连素市场核心数据</h2><p>海外市场中，黄连素是膳食补充剂赛道增速最猛的品类之一</p></div>
+      <div class="stats-grid">
+        <div class="stat-pill"><div class="stat-number" style="color:var(--coral);">137.5<span style="font-size:0.45em;font-weight:400;">亿$</span></div><div class="stat-label">2024年全球黄连素<br>补充剂市场规模</div><div class="stat-bar pill-coral"></div></div>
+        <div class="stat-pill"><div class="stat-number" style="color:var(--lime);">265<span style="font-size:0.45em;font-weight:400;">亿$</span></div><div class="stat-label">2032年<br>预测规模</div><div class="stat-bar pill-lime"></div></div>
+        <div class="stat-pill"><div class="stat-number" style="color:var(--sky);">7.8<span style="font-size:0.45em;font-weight:400;">%</span></div><div class="stat-label">2025–2032<br>全球 CAGR</div><div class="stat-bar pill-sky"></div></div>
+        <div class="stat-pill"><div class="stat-number" style="color:var(--violet);">~34<span style="font-size:0.45em;font-weight:400;">%</span></div><div class="stat-label">北美市场份额<br>（全球最大）</div><div class="stat-bar pill-violet"></div></div>
+        <div class="stat-pill"><div class="stat-number" style="color:var(--coral);">~150<span style="font-size:0.45em;font-weight:400;">亿¥</span></div><div class="stat-label">中国盐酸小檗碱<br>药品市场（2025年）</div><div class="stat-bar pill-coral"></div></div>
+        <div class="stat-pill"><div class="stat-number" style="color:var(--lime);">27<span style="font-size:0.45em;font-weight:400;">%</span></div><div class="stat-label">中国保健品渗透率<br>（含黄连素配方，2025年）</div><div class="stat-bar pill-lime"></div></div>
+      </div>
+      <div class="trend-note"><strong>关键趋势：</strong>中国是黄连素原料的全球最大供应国（占全球提取产能 70–85%），但国内消费市场仍以药品（止泻药）为主，保健品市场严重滞后于海外。</div>
+    </div>
+  </div>
+
+  <!-- S4 中国市场 -->
+  <div class="slide slide-4" data-slide="4">
+    <div class="slide-inner">
+      <div class="left-col">
+        <div class="section-tag pill-coral">01 中国市场</div><div class="accent-line"></div>
+        <h2>中国：原料大国，消费小国</h2>
+        <p>小檗碱保健品整体复购率 41.7%，远超普通膳食补充剂行业均值 28.3%，连续使用 6 个月以上用户占比 36.2%——需求真实存在，只是未被正确满足。</p>
+      </div>
+      <div class="right-col">
+        <div class="data-card"><h4>消费者年龄结构</h4>
+          <table class="age-table">
+            <thead><tr><th>消费群体</th><th>年龄</th><th>占比</th><th>使用动机</th></tr></thead>
+            <tbody>
+              <tr><td style="font-weight:600;">核心人群</td><td>35–54岁</td><td><span class="pct" style="color:var(--coral);">48%</span></td><td>血糖调节、肠道健康</td></tr>
+              <tr><td style="font-weight:600;">新兴人群</td><td>25–34岁</td><td><span class="pct" style="color:var(--lime);">32%</span></td><td>体重管理、控糖需求</td></tr>
+              <tr><td style="font-weight:600;">重要人群</td><td>55岁以上</td><td><span class="pct" style="color:var(--sky);">14%</span></td><td>慢性病辅助调理</td></tr>
+              <tr><td style="font-weight:600;">年轻尝试者</td><td>18–24岁</td><td><span class="pct" style="color:var(--violet);">6%</span></td><td>健康潮流体验</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S5 海外复购率 -->
+  <div class="slide slide-5" data-slide="5">
+    <div class="slide-inner">
+      <div class="slide-header" style="text-align:center;"><div class="section-tag pill-sky">01 海外市场</div><h2>海外市场复购/订购率</h2><p>品牌溢价与剂型技术直接影响复购意愿，白牌复购率近乎为零</p></div>
+      <div class="chart-container">
+        <div class="chart-row"><div class="chart-label">标准盐酸小檗碱<br><span style="font-size:0.78rem;opacity:0.4;">（高纯度品牌）</span></div><div class="chart-bar-track"><div class="chart-bar-fill pill-lime" style="width:86%;">43%</div></div><div class="chart-value">~43%</div></div>
+        <div class="chart-row"><div class="chart-label">磷脂复合物/<br>高吸收剂型</div><div class="chart-bar-track"><div class="chart-bar-fill pill-sky" style="width:80%;">40%</div></div><div class="chart-value">~40%</div></div>
+        <div class="chart-row"><div class="chart-label">复配方<br><span style="font-size:0.78rem;opacity:0.4;">（小檗碱+肉桂等）</span></div><div class="chart-bar-track"><div class="chart-bar-fill pill-lavender" style="width:76%;">38%</div></div><div class="chart-value">~38%</div></div>
+        <div class="chart-row"><div class="chart-label">低价白牌/杂牌</div><div class="chart-bar-track"><div class="chart-bar-fill pill-outline" style="width:14%;color:var(--fg);">4–9%</div></div><div class="chart-value">~4–9%</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S6 第一梯队 -->
+  <div class="slide slide-brands" data-slide="6">
+    <div class="slide-inner">
+      <div class="slide-header"><div class="section-tag pill-coral">02 第一梯队</div><h2>专业营养品牌：精准聚焦，合规优先</h2></div>
+      <div class="brand-row header"><div>产品</div><div>品牌</div><div>核心规格</div><div>价格</div><div>主打功效</div><div>主要成分</div></div>
+      <div class="brand-row">
+        <div class="brand-img-cell"><img src="https://s.coze.cn/image/sHmXLiI2N_s/" alt="Thorne"></div>
+        <div class="brand-cell"><div class="brand-name">Thorne Berberine</div></div><div class="brand-cell">50g/60粒</div><div class="brand-cell"><div class="price-tag">¥299</div></div>
+        <div class="brand-cell"><div class="efficacy-pills"><span class="mini-pill pill-coral">血糖</span><span class="mini-pill pill-sky">心血管</span><span class="mini-pill pill-lavender">女性激素</span><span class="mini-pill pill-peach">胃肠道</span></div></div>
+        <div class="brand-cell"><div class="ingredient-text">盐酸小檗碱450mg、Barberine Phytosome(具芒小檗提取物/豌豆、向日葵、葡萄籽磷脂复合物)550mg、月桂酸钙</div></div>
+      </div>
+      <div class="brand-row">
+        <div class="brand-img-cell"><img src="https://s.coze.cn/image/fx4WXdDwc5M/" alt="Pure Encapsulations"></div>
+        <div class="brand-cell"><div class="brand-name">Pure Encapsulations Berberine UltraSorb</div></div><div class="brand-cell">68g/60粒</div><div class="brand-cell"><div class="price-tag">¥326</div></div>
+        <div class="brand-cell"><div class="efficacy-pills"><span class="mini-pill pill-lime">代谢</span><span class="mini-pill pill-sky">心血管</span></div></div>
+        <div class="brand-cell"><div class="ingredient-text">Indena Phytosome 复合物(小檗碱和向日葵磷脂复合物)550mg、刺槐根提取物、豌豆蛋白分离物、向日葵卵磷脂、葡萄籽提取物、抗坏血酸棕榈酸酯</div></div>
+      </div>
+      <div class="brand-row">
+        <div class="brand-img-cell"><img src="https://s.coze.cn/image/8H-d6tunfY8/" alt="Life Extension"></div>
+        <div class="brand-cell"><div class="brand-name">Life Extension Berberine</div></div><div class="brand-cell">60粒</div><div class="brand-cell"><div class="price-tag">¥145</div></div>
+        <div class="brand-cell"><div class="efficacy-pills"><span class="mini-pill pill-peach">胃肠道</span><span class="mini-pill pill-sky">心血管</span><span class="mini-pill pill-coral">血糖</span></div></div>
+        <div class="brand-cell"><div class="ingredient-text">盐酸小檗碱510mg、亮氨酸50mg、大米浓缩液、乳酸钙</div></div>
+      </div>
+      <div class="brand-row">
+        <div class="brand-img-cell"><img src="https://s.coze.cn/image/f3VrhC-ra0A/" alt="Now Foods"></div>
+        <div class="brand-cell"><div class="brand-name">Now Foods Berberine Glucose Support</div></div><div class="brand-cell">200g/90粒</div><div class="brand-cell"><div class="price-tag">¥150</div></div>
+        <div class="brand-cell"><div class="efficacy-pills"><span class="mini-pill pill-peach">胃肠道</span><span class="mini-pill pill-sky">心血管</span><span class="mini-pill pill-coral">血糖</span></div></div>
+        <div class="brand-cell"><div class="ingredient-text">小檗碱盐酸400mg、MCT油(中链甘油三酯)700mg、癸酸(C10)238mg、蜂蜡和向日葵卵磷脂</div></div>
+      </div>
+      <div class="brand-row">
+        <div class="brand-img-cell"><img src="https://s.coze.cn/image/-WafVGuuwc8/" alt="Solaray"></div>
+        <div class="brand-cell"><div class="brand-name">Solaray Berberine</div></div><div class="brand-cell">500mg×60粒</div><div class="brand-cell"><div class="price-tag">¥163</div></div>
+        <div class="brand-cell"><div class="efficacy-pills"><span class="mini-pill pill-lavender">免疫力</span></div></div>
+        <div class="brand-cell"><div class="ingredient-text">小檗碱复合物（250mg盐酸小檗碱和270mg俄勒冈葡萄）、全米浓缩物</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S7 第二梯队 -->
+  <div class="slide slide-brands" data-slide="7">
+    <div class="slide-inner">
+      <div class="slide-header"><div class="section-tag pill-lime">02 第二梯队</div><h2>大众消费品牌：广泛覆盖，堆砌关键词</h2></div>
+      <div class="brand-row header"><div>产品</div><div>品牌</div><div>核心规格</div><div>价格</div><div>主打功效</div><div>主要成分</div></div>
+      <div class="brand-row">
+        <div class="brand-img-cell"><img src="https://s.coze.cn/image/bCN1zGYM_5M/" alt="Zhou Nutrition"></div>
+        <div class="brand-cell"><div class="brand-name">Zhou Nutrition Berberine</div></div><div class="brand-cell">500mg×60粒</div><div class="brand-cell"><div class="price-tag">¥135</div></div>
+        <div class="brand-cell"><div class="efficacy-pills"><span class="mini-pill pill-lime">代谢</span><span class="mini-pill pill-peach">胃肠道</span><span class="mini-pill pill-sky">心血管</span></div></div>
+        <div class="brand-cell"><div class="ingredient-text">小檗碱、俄勒冈葡萄(Mahonia aquifolium)(根)、全米浓缩物、硬脂酸镁</div></div>
+      </div>
+      <div class="brand-row">
+        <div class="brand-img-cell"><img src="https://s.coze.cn/image/cO-Xqz_78hs/" alt="Dr Martins"></div>
+        <div class="brand-cell"><div class="brand-name">Dr. Martins Nutrition Berberine</div></div><div class="brand-cell">1200mg×120粒</div><div class="brand-cell"><div class="price-tag">¥149</div></div>
+        <div class="brand-cell"><div class="efficacy-pills"><span class="mini-pill pill-coral">血糖</span><span class="mini-pill pill-yellow">体重</span><span class="mini-pill pill-lavender">记忆力</span><span class="mini-pill pill-lavender">免疫力</span><span class="mini-pill pill-peach">胃肠道</span><span class="mini-pill pill-sky">心血管</span></div></div>
+        <div class="brand-cell"><div class="ingredient-text">盐酸小檗碱1200mg、米粉、蔬菜(镁)硬脂酸</div></div>
+      </div>
+      <div class="brand-row">
+        <div class="brand-img-cell"><img src="https://s.coze.cn/image/cqzwJfDtD7s/" alt="Horbaach"></div>
+        <div class="brand-cell"><div class="brand-name">Horbaach Berberine</div></div><div class="brand-cell">96g/120粒</div><div class="brand-cell"><div class="price-tag">¥129</div></div>
+        <div class="brand-cell"><div class="efficacy-pills"><span class="mini-pill pill-peach">抗炎</span></div></div>
+        <div class="brand-cell"><div class="ingredient-text">小檗碱锡兰肉桂复合物、米粉、蔬菜硬脂酸镁、二氧化硅</div></div>
+      </div>
+      <div class="brand-row">
+        <div class="brand-img-cell"><img src="https://s.coze.cn/image/OlmXuC03RXE/" alt="Sunergetic"></div>
+        <div class="brand-cell"><div class="brand-name">Sunergetic Berberine</div></div><div class="brand-cell">80g/60粒</div><div class="brand-cell"><div class="price-tag">¥163</div></div>
+        <div class="brand-cell"><div class="efficacy-pills"><span class="mini-pill pill-lavender">免疫力</span><span class="mini-pill pill-sky">心血管</span></div></div>
+        <div class="brand-cell"><div class="ingredient-text">600mg小檗碱盐酸</div></div>
+      </div>
+      <div class="brand-row">
+        <div class="brand-img-cell"><img src="https://s.coze.cn/image/-PqaEeSFoW8/" alt="Best Naturals"></div>
+        <div class="brand-cell"><div class="brand-name">Best Naturals Berberine</div></div><div class="brand-cell">500mg×120粒</div><div class="brand-cell"><div class="price-tag">¥129</div></div>
+        <div class="brand-cell"><div class="efficacy-pills"><span class="mini-pill pill-lavender">免疫力</span><span class="mini-pill pill-sky">心血管</span><span class="mini-pill pill-peach">胃肠道</span></div></div>
+        <div class="brand-cell"><div class="ingredient-text">盐酸小檗碱、二氧化硅、硬脂酸镁(植物来源)</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S8 第三梯队 -->
+  <div class="slide slide-brands" data-slide="8">
+    <div class="slide-inner">
+      <div class="slide-header"><div class="section-tag pill-sky">02 第三梯队</div><h2>差异化/高端品牌：差异化定位，创造新品类</h2></div>
+      <div class="brand-row header"><div>产品</div><div>品牌</div><div>核心规格</div><div>价格</div><div>主打功效</div><div>主要成分</div></div>
+      <div class="brand-row">
+        <div class="brand-img-cell"><img src="https://s.coze.cn/image/z8yYISw3FBA/" alt="Toniiq"></div>
+        <div class="brand-cell"><div class="brand-name">Toniiq Berberine Ultra High PURITY</div><div class="brand-sub">97%超高纯度</div></div><div class="brand-cell">90g/180粒</div><div class="brand-cell"><div class="price-tag">¥319</div></div>
+        <div class="brand-cell"><div class="efficacy-pills"><span class="mini-pill pill-coral">血糖</span><span class="mini-pill pill-lavender">女性激素</span><span class="mini-pill pill-sky">心血管</span></div></div>
+        <div class="brand-cell"><div class="ingredient-text">盐酸小檗碱 97% 小檗(根)提取物</div></div>
+      </div>
+      <div class="brand-row">
+        <div class="brand-img-cell"><img src="https://s.coze.cn/image/vTQTy4uECO4/" alt="Deal Supplement"></div>
+        <div class="brand-cell"><div class="brand-name">Deal Supplement Berberine Max</div><div class="brand-sub">超大剂量</div></div><div class="brand-cell">5000mg×240粒</div><div class="brand-cell"><div class="price-tag">¥183</div></div>
+        <div class="brand-cell"><div class="efficacy-pills"><span class="mini-pill pill-mint">抗氧化</span><span class="mini-pill pill-yellow">体重</span></div></div>
+        <div class="brand-cell"><div class="ingredient-text">盐酸小檗碱、姜提取物（长黄褐）（根部）</div></div>
+      </div>
+      <div class="brand-row">
+        <div class="brand-img-cell"><img src="https://s.coze.cn/image/iczbE-sOV0s/" alt="Snap Supplements"></div>
+        <div class="brand-cell"><div class="brand-name">Snap Supplements Blood Sugar</div><div class="brand-sub">超级混合配方</div></div><div class="brand-cell">60g/30粒</div><div class="brand-cell"><div class="price-tag">¥183</div></div>
+        <div class="brand-cell"><div class="efficacy-pills"><span class="mini-pill pill-coral">血糖</span><span class="mini-pill pill-lime">代谢</span><span class="mini-pill pill-peach">抗炎</span><span class="mini-pill pill-sky">心血管</span></div></div>
+        <div class="brand-cell"><div class="ingredient-text">VD、硫胺素、烟酸、叶酸、B12、生物素、锌、Snap Blood Sugar混合1200mg（葡萄糖代谢混合剂825mg：黄连碱盐酸、肉桂树皮粉、白桑叶、吉姆内玛、葫芦巴、苦瓜、荨麻叶；情绪支持275mg：冬青草、辣木、L-茶氨酸、狮鬃菇；抗炎100mg：绿茶、姜黄、α-硫辛酸、白藜芦醇、辅酶Q10）、钒</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S9 功效声称 -->
+  <div class="slide slide-9" data-slide="9">
+    <div class="slide-inner">
+      <div class="slide-header" style="text-align:center;"><div class="section-tag pill-coral">02 功效声称</div><h2>功效声称覆盖率：心血管一家独大</h2></div>
+      <div class="chart-container">
+        <div class="chart-row"><div class="chart-label">心血管健康</div><div class="chart-bar-track"><div class="chart-bar-fill pill-coral" style="width:81%;">81%</div></div><div class="chart-value">81%</div></div>
+        <div class="chart-row"><div class="chart-label">血糖管理</div><div class="chart-bar-track"><div class="chart-bar-fill pill-lime" style="width:56%;">56%</div></div><div class="chart-value">56%</div></div>
+        <div class="chart-row"><div class="chart-label">胃肠道健康</div><div class="chart-bar-track"><div class="chart-bar-fill pill-sky" style="width:44%;">44%</div></div><div class="chart-value">44%</div></div>
+        <div class="chart-row"><div class="chart-label">免疫力</div><div class="chart-bar-track"><div class="chart-bar-fill pill-violet" style="width:31%;">31%</div></div><div class="chart-value">31%</div></div>
+        <div class="chart-row"><div class="chart-label">代谢支持</div><div class="chart-bar-track"><div class="chart-bar-fill pill-yellow" style="width:31%;">31%</div></div><div class="chart-value">31%</div></div>
+        <div class="chart-row"><div class="chart-label">体重管理</div><div class="chart-bar-track"><div class="chart-bar-fill pill-peach" style="width:19%;">19%</div></div><div class="chart-value">19%</div></div>
+        <div class="chart-row"><div class="chart-label">抗炎/抗氧化</div><div class="chart-bar-track"><div class="chart-bar-fill pill-lavender" style="width:19%;">19%</div></div><div class="chart-value">19%</div></div>
+        <div class="chart-row"><div class="chart-label">女性激素</div><div class="chart-bar-track"><div class="chart-bar-fill pill-mint" style="width:13%;">13%</div></div><div class="chart-value">13%</div></div>
+        <div class="chart-row"><div class="chart-label">记忆力/认知</div><div class="chart-bar-track"><div class="chart-bar-fill pill-outline" style="width:6%;color:var(--fg);">6%</div></div><div class="chart-value">6%</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S10 声称策略 -->
+  <div class="slide slide-10" data-slide="10">
+    <div class="slide-inner">
+      <div class="slide-header" style="text-align:center;"><div class="section-tag pill-lavender">02 声称策略</div><h2>声称数量与品牌定位成反比</h2></div>
+      <div class="cards-grid">
+        <div class="pillar-card"><div class="card-icon pill-coral">I</div><div class="card-tag">第一梯队 · 专业品牌</div><h3>2–3 个声称<br>精准聚焦，合规优先</h3><p>专业品牌选择少而精的功效声称，在监管合规和学术支撑下建立专业信任。如 Pure Encapsulations 仅"代谢+心血管"2 项。</p></div>
+        <div class="pillar-card"><div class="card-icon pill-lime">II</div><div class="card-tag">第二梯队 · 大众品牌</div><h3>3–6 个声称<br>广泛覆盖，堆砌关键词</h3><p>大众品牌以最大化搜索曝光和消费者触达为目标。如 Dr. Martins 宣传 6 项功效，从血糖到记忆力全面覆盖。</p></div>
+        <div class="pillar-card"><div class="card-icon pill-sky">III</div><div class="card-tag">第三梯队 · 差异化品牌</div><h3>2–4 个声称<br>差异化定位，创造新品类</h3><p>差异化品牌选择独特的声称组合来定义新品类。如 Snap 主打"血糖+代谢+抗炎"组合，跳出传统框架。</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S11 剂型+植物胶囊 -->
+  <div class="slide slide-11" data-slide="11">
+    <div class="slide-inner">
+      <div class="left-col">
+        <div class="section-tag pill-sky">02 剂型分布</div><h3>植物胶囊是绝对主流</h3>
+        <div class="dosage-bars">
+          <div class="dosage-row"><div class="dosage-label">植物胶囊<br><span style="font-size:0.72rem;opacity:0.35;">（素食胶囊）</span></div><div class="dosage-track"><div class="dosage-fill pill-lime" style="width:81%;">81%</div></div><div class="dosage-val">81%</div></div>
+          <div class="dosage-row"><div class="dosage-label">明胶胶囊</div><div class="dosage-track"><div class="dosage-fill pill-lavender" style="width:13%;">13%</div></div><div class="dosage-val">13%</div></div>
+          <div class="dosage-row"><div class="dosage-label">软胶囊</div><div class="dosage-track"><div class="dosage-fill pill-yellow" style="width:6%;">6%</div></div><div class="dosage-val">6%</div></div>
+        </div>
+        <p style="font-size:0.84rem;opacity:0.3;margin-top:0.2rem;">代表：Pure Encapsulations、Solaray、Dr.Martins（植物胶囊）/ Best Naturals、Amazing Nutrition（明胶）/ Now Foods（软胶囊）</p>
+      </div>
+      <div class="right-col">
+        <h3>植物胶囊驱动因素</h3>
+        <div class="driver-item"><h4>🥬 素食/清真市场扩展需求</h4><p>美国素食人口比例从 2018 年的 3% 升至 2025 年的 ~6%，Halal 认证需要非动物源胶囊</p></div>
+        <div class="driver-item"><h4>🏷️ 清洁标签心智</h4><p>植物胶囊 = 无动物成分 = 更天然，这与黄连素"天然植物提取物"的定位高度契合</p></div>
+        <div class="driver-item"><h4>💰 成本溢价已收窄</h4><p>植物胶囊与明胶胶囊的原料价差从 2019 年的 30–40% 缩窄至 2025 年的 10–15%</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S12 复配+俄勒冈葡萄 -->
+  <div class="slide slide-12" data-slide="12">
+    <div class="slide-inner">
+      <div class="slide-header" style="text-align:center;"><div class="section-tag pill-yellow">02 复配配方</div><h2>配方演进：纯度竞争让位于配方创新</h2></div>
+      <div class="formulation-flow">
+        <div class="formula-node pill-white">纯小檗碱<br>单方<span class="pct">38%</span></div><div class="formula-connector"></div>
+        <div class="formula-node pill-lavender">+植物<br>提取物<span class="pct">25%</span></div><div class="formula-connector"></div>
+        <div class="formula-node" style="background:var(--lime);">+增强<br>吸收<span class="pct">24%</span></div><div class="formula-connector"></div>
+        <div class="formula-node pill-coral">超级<br>复配方<span class="pct">13%</span></div>
+      </div>
+      <div style="display:flex;justify-content:center;gap:1.2rem;">
+        <div style="text-align:center;max-width:155px;"><div class="pill pill-filled pill-sky" style="padding:0.3rem 0.8rem;font-size:0.72rem;margin-bottom:0.3rem;">纯度卖点</div><div style="font-size:0.78rem;opacity:0.4;line-height:1.3;">以纯度和剂量为卖点，38%仍走此路线</div></div>
+        <div style="text-align:center;max-width:155px;"><div class="pill pill-filled pill-violet" style="padding:0.3rem 0.8rem;font-size:0.72rem;margin-bottom:0.3rem;">品类创造者</div><div style="font-size:0.78rem;opacity:0.4;line-height:1.3;">多通路协同，建立新品类定位</div></div>
+        <div style="text-align:center;max-width:155px;"><div class="pill pill-filled pill-yellow" style="padding:0.3rem 0.8rem;font-size:0.72rem;margin-bottom:0.3rem;">技术壁垒</div><div style="font-size:0.78rem;opacity:0.4;line-height:1.3;">磷脂复合物等技术建立溢价</div></div>
+        <div style="text-align:center;max-width:155px;"><div class="pill pill-filled pill-coral" style="padding:0.3rem 0.8rem;font-size:0.72rem;margin-bottom:0.3rem;">一站式方案</div><div style="font-size:0.78rem;opacity:0.4;line-height:1.3;">10+成分全谱覆盖</div></div>
+      </div>
+      <div class="oregon-box">
+        <div style="grid-column:span 3;font-family:var(--font-display);font-size:1.28rem;font-weight:700;">🌿 发现：俄勒冈葡萄（Oregon Grape）是高频复配方向</div>
+        <div class="og-item"><h4>同源增效</h4><p>俄勒冈葡萄本身含天然小檗碱，两种含小檗碱植物源协同 = "同源增效"概念</p></div>
+        <div class="og-item"><h4>消费者心智</h4><p>消费者更容易接受"两种含小檗碱的植物"而非"小檗碱+矿物质（铬）"</p></div>
+        <div class="og-item"><h4>传统故事</h4><p>太平洋西北部原住民传统用药，有"天然/传统"故事可讲</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S13 消费者反馈 -->
+  <div class="slide slide-13" data-slide="13">
+    <div class="slide-inner">
+      <div class="slide-header" style="text-align:center;"><div class="section-tag pill-peach">03 消费者反馈</div><h2>消费者反馈画像</h2></div>
+      <div class="stats-grid">
+        <div class="stat-pill"><div class="stat-number" style="color:var(--lime);">83.8<span style="font-size:0.45em;font-weight:400;">%</span></div><div class="stat-label">整体满意度<br>（4–5星评价）</div><div class="stat-bar pill-lime"></div></div>
+        <div class="stat-pill"><div class="stat-number" style="color:var(--coral);">47.3<span style="font-size:0.45em;font-weight:400;">%</span></div><div class="stat-label">报告体重管理改善<br>（减重/食欲下降/渴望减少）</div><div class="stat-bar pill-coral"></div></div>
+        <div class="stat-pill"><div class="stat-number" style="color:var(--sky);">15.6<span style="font-size:0.45em;font-weight:400;">%</span></div><div class="stat-label">报告血糖/代谢改善<br>（HbA1c/空腹血糖/胰岛素抵抗/血脂）</div><div class="stat-bar pill-sky"></div></div>
+        <div class="stat-pill"><div class="stat-number" style="color:var(--violet);">14.9<span style="font-size:0.45em;font-weight:400;">%</span></div><div class="stat-label">报告精力提升</div><div class="stat-bar pill-violet"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S14 需求分层 -->
+  <div class="slide slide-14" data-slide="14">
+    <div class="slide-inner">
+      <div class="slide-header" style="text-align:center;"><div class="section-tag pill-violet">03 需求分层</div><h2>消费者动机与需求分层</h2></div>
+      <div class="timeline">
+        <div class="timeline-track"></div>
+        <div class="timeline-step"><div class="step-node pill-coral" style="font-size:1.17rem;">强</div><div class="step-label">糖尿病前期/<br>2型糖尿病患者</div><div class="step-desc">降低 HbA1c、控制空腹血糖<br>→ 选择标准盐酸小檗碱</div></div>
+        <div class="timeline-step"><div class="step-node pill-lime" style="font-size:1.17rem;">中</div><div class="step-label">代谢综合征/<br>高血脂/超重</div><div class="step-desc">降脂、减重、代谢优化<br>→ 选择小檗碱+肉桂/铬复配方</div></div>
+        <div class="timeline-step"><div class="step-node pill-sky" style="font-size:1.17rem;">弱</div><div class="step-label">健康优化/<br>抗衰老/PCOS</div><div class="step-desc">整体代谢支持、激素平衡<br>→ 选择磷脂复合物高吸收剂型</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S15 竞争机会 -->
+  <div class="slide slide-15" data-slide="15">
+    <div class="statement-box">
+      <div class="quote-mark">&ldquo;</div>
+      <blockquote>
+        机会一：56% 产品声称降糖，但仅 <span class="qh">15.6%</span> 感受到改善——降糖功效兑现存在巨大缺口。<br><br>
+        机会二：47.3% 用户报告体重管理改善，声称覆盖率仅 <span class="qh alt">19%</span>——体重管理应从"附带效果"升级为"核心卖点"。<br><br>
+        机会三：纯小檗碱单方占 38% 仍是主流，但 62% 的复配产品指向增长方向——<span class="qh third">"纯度竞争"将让位于"配方创新"</span>。
+      </blockquote>
+      <div class="attribution">三大竞争机会洞察</div>
+    </div>
+  </div>
+
+  <!-- S16 结尾 -->
+  <div class="slide slide-16" data-slide="16">
+    <div class="deco-pills-closing">
+      <div class="c-pill pill-lime" style="width:88px;height:38px;top:15%;left:10%;transform:rotate(-12deg);font-size:0.55rem;">配方创新</div>
+      <div class="c-pill pill-sky" style="width:72px;height:34px;top:20%;right:12%;transform:rotate(15deg);font-size:0.52rem;">体重管理</div>
+      <div class="c-pill pill-lavender" style="width:98px;height:40px;bottom:20%;left:12%;transform:rotate(10deg);font-size:0.6rem;">降糖兑现</div>
+      <div class="c-pill pill-coral" style="width:62px;height:62px;border-radius:50%;bottom:15%;right:15%;font-size:0.52rem;">Go</div>
+      <div class="c-pill pill-violet" style="width:80px;height:36px;top:50%;left:5%;transform:rotate(-20deg);font-size:0.52rem;">中国蓝海</div>
+      <div class="c-pill pill-yellow" style="width:76px;height:34px;top:45%;right:8%;transform:rotate(18deg);font-size:0.48rem;">7.8%</div>
+      <div class="c-pill pill-peach" style="width:66px;height:32px;top:8%;left:50%;transform:rotate(5deg);font-size:0.48rem;opacity:0.7;">增长</div>
+    </div>
+    <div class="closing-content">
+      <div class="closing-pill">内部战略汇报</div>
+      <h2>配方创新决胜黄连素下一个增长周期</h2>
+      <div class="closing-line"></div>
+      <div class="closing-sub">市场研究部 · 2026年6月</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="nav-dots" id="navDots"></div>
+<div class="slide-counter"><span id="current">01</span> / 16</div>
+<div class="nav-hint">← → 键翻页</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const dotsContainer = document.getElementById('navDots');
+  const counterCurrent = document.getElementById('current');
+  let currentSlide = 1;
+  const totalSlides = slides.length;
+  for (let i = 1; i <= totalSlides; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'nav-dot' + (i === 1 ? ' active' : '');
+    dot.dataset.slide = i;
+    dot.addEventListener('click', () => goToSlide(i));
+    dotsContainer.appendChild(dot);
+  }
+  const dots = document.querySelectorAll('.nav-dot');
+  function goToSlide(n) {
+    if (n < 1) n = totalSlides; if (n > totalSlides) n = 1; currentSlide = n;
+    slides.forEach(s => s.classList.remove('active')); dots.forEach(d => d.classList.remove('active'));
+    const a = document.querySelector(`.slide[data-slide="${currentSlide}"]`); const b = document.querySelector(`.nav-dot[data-slide="${currentSlide}"]`);
+    if (a) a.classList.add('active'); if (b) b.classList.add('active');
+    counterCurrent.textContent = String(currentSlide).padStart(2, '0');
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); goToSlide(currentSlide + 1); }
+    else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); goToSlide(currentSlide - 1); }
+    else if (e.key === 'Home') { e.preventDefault(); goToSlide(1); }
+    else if (e.key === 'End') { e.preventDefault(); goToSlide(totalSlides); }
+  });
+  let tx = 0;
+  document.addEventListener('touchstart', e => { tx = e.changedTouches[0].screenX; }, { passive: true });
+  document.addEventListener('touchend', e => { const d = tx - e.changedTouches[0].screenX; if (Math.abs(d) > 50) { d > 0 ? goToSlide(currentSlide + 1) : goToSlide(currentSlide - 1); } }, { passive: true });
+</script>
+</body>
+</html>
